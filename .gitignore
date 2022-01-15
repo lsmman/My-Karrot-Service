@@ -40,3 +40,4 @@ out/
 *.properties
 *.yml
 *.yaml
+!gradle/wrapper/gradle-wrapper.properties
