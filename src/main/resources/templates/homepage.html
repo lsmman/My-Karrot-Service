@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+<!--    <p th:text="${members}"></p>-->
+    <div style="padding-left: 30px">
+        <img src="/images/당근.png" width="40%" height="5%"  >
+    </div>
+
+    <h3>당신 근처의 Karrot 마켓</h3>
+    <div style="padding-bottom: 20px"></div>
+    <div>이젠 내 동내에서</div>
+    <div>간편하게 중고거래하자</div>
+    <div style="padding-bottom: 20px"></div>
+
+    <button
+
+            style="background-color: #E78111"
+            onclick="location.href='/member/new'"
+    >시작하기</button>
+
+
+    <p>
+        이미 계정이 있나요?
+        <a href="#" onclick="location.href='/login'" style="text-emphasis-color: #E78111">
+            로그인
+        </a>
+    </p>
+
+</body>
+</html>
