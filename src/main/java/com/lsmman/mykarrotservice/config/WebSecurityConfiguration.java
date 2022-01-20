@@ -1,6 +1,6 @@
 package com.lsmman.mykarrotservice.config;
 
-import com.lsmman.mykarrotservice.handler.CustomFailureHandler;
+import com.lsmman.mykarrotservice.handler.CustomLoginFailureHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -27,7 +27,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Autowired
-    CustomFailureHandler customFailureHandler;
+    CustomLoginFailureHandler customLoginFailureHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -45,7 +45,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .defaultSuccessUrl("/")
                     .usernameParameter("id")
                     .passwordParameter("pw")
-                    .failureHandler(customFailureHandler)
+                    .failureHandler(customLoginFailureHandler)
                     .permitAll()
                     .and()
                 .logout()
