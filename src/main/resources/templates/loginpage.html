@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<script>
+    if ([[${param.error}]]){
+        alert("올바르지 않은 아이디나 비밀번호입니다.")
+    }
+</script>
+
+<form class="form-signin" th:action="@{/doLogin}" method="post">
+    <h1>로그인</h1>
+
+<!--    <div th:if="${param.error}"></div>-->
+    <div style="padding-bottom: 50px"></div>
+
+    <div>
+        <div style="padding-bottom: 5%">
+            <label class="sr-only">이메일(ID)</label>
+        </div>
+        <div>
+            <input type="text" name="id" class="form-control" required autofocus>
+        </div>
+    </div>
+    <div style="padding-bottom: 30px"></div>
+    <div>
+        <div style="padding-bottom: 5%">
+            <label class="sr-only">비밀번호(PW)</label>
+        </div>
+        <div>
+            <input type="password" name="pw" class="form-control" required>
+        </div>
+    </div>
+    <div style="padding-bottom: 30px"></div>
+    <input type="submit" value="로그인" style="background-color: #E78111">
+
+
+    <div style="padding-bottom: 10%"></div>
+    <div>
+        비밀번호를 잊어버리셨나요?
+        <div>
+            <a>비밀번호 찾기</a>
+        </div>
+    </div>
+</form>
+</body>
+</html>
