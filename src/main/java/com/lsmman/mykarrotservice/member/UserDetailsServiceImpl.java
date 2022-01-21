@@ -30,10 +30,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             grantedAuthorities.add(new SimpleGrantedAuthority(Role.MEMBER.getValue()));
         }
 
-        return User.builder()
-                .username(member.getMemberId())
-                .password(member.getPassword())
-                .authorities(grantedAuthorities)
-                .build();
+        return new CustomUserDetail(
+                member.getMemberId(),
+                member.getPassword(),
+                grantedAuthorities,
+                member.getId());
     }
 }
