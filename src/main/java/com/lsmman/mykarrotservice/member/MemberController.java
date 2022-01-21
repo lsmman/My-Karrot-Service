@@ -29,7 +29,7 @@ public class MemberController {
         return "homepage";
     }
 
-    @GetMapping("/admin")
+    @GetMapping("/member/admin")
     public String adminPage(@AuthenticationPrincipal User user,
                             Map<String, Object> model) {
         model.put("currentAdminId", user.getUsername());
@@ -42,7 +42,11 @@ public class MemberController {
     }
 
     @PostMapping("/member/new")
-    public String memberJoin(Member memberForm) {
+    public String memberJoin(Member memberForm, Model model) {
+        if (memberRepository.findByMemberId(memberForm.getMemberId()).isPresent()){
+            model.addAttribute("error", true);
+            return "memberJoinForm";
+        }
         memberForm.encodePassword(passwordEncoder.encode(memberForm.getPassword()));
         memberRepository.save(memberForm);
         return "redirect:/login";
