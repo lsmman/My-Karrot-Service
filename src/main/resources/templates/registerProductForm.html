@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--TODO 이미지 2개 이상 등록 구현-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 등록</title>
+    <style >
+
+    </style>
+</head>
+<body>
+    <div>
+        <h2>
+            <a type="button" onclick="location.href='/product/view';">
+                <img src="/images/뒤로가기.png" width="10%" height="10%" alt="뒤로가기">
+            </a>
+            중고거래 글쓰기
+        </h2>
+    </div>
+    <hr>
+    <div style="padding-bottom: 5%"></div>
+    <form th:object="${registerProductRequestDto}" th:action="@{/product/register}" th:method="post" enctype="multipart/form-data">
+        <img id="showImage" alt="your image" width="100" height="100" /> <br/>
+        <input type="file" name="file" onchange="document.getElementById('showImage').src = window.URL.createObjectURL(this.files[0])">
+        <hr>
+        <div>
+            글 제목
+            <input type="text" th:field="*{title}" style="width: 70%">
+        </div>
+        <hr>
+        <div>
+            카테고리
+            <select th:field="*{category}" name="cars" id="cars">
+                <option value="DIGITAL">디지털기기</option>
+                <option value="HOME_APPLIANCE">생활가전</option>
+                <option value="FURNITURE_INTERIOR">가구/인테리어</option>
+                <option value="CHILDREN">유아동</option>
+                <option value="LIFE_PROCESSED_FOOD">생활/가공식품</option>
+                <option value="CHILDRENS_BOOK">유아도서</option>
+                <option value="SPORTS_LEISURE">스포츠/레저</option>
+                <option value="WOMENS_ACCESSORIES">여성잡화</option>
+                <option value="WOMENS_CLOTHING">여성의류</option>
+                <option value="MENS_FASHION_MISCELLANEOUS_GOODS">남성패션/잡화</option>
+                <option value="GAMES_HOBBIES">게임/취미</option>
+                <option value="BEAUTY_BEAUTY">뷰티/미용</option>
+                <option value="PET_SUPPLIES">반려동물용품</option>
+                <option value="BOOKS_TICKETS_ALBUMS">도서/티켓/음반</option>
+                <option value="PLANTS">식물</option>
+                <option value="OTHER_USED_GOODS">기타 중고물품</option>
+                <option value="USED_CARS">중고차</option>
+            </select>
+        </div>
+        <hr>
+        <div>
+            가격(원)
+            <input type="text" th:field="*{price}" style="width: 70%">
+        </div>
+        <hr>
+        <div>
+            <p>내용</p>
+            <input type="text" th:field="*{contents}" placeholder="게시글 내용을 작성해주세요. 가짜 품목 및 판매금지품목은 게시가 제한됩니다." style="width: 95%;height: 70%" >
+        </div>
+        <div style="padding-bottom: 20px"></div>
+        <div>
+            <button type="submit" style="width: 100%">완료</button>
+        </div>
+    </form>
+</body>
+</html>
+
+<script>
+    postsSave : function () {
+        var data = {
+            title: $('#title').val(),
+            content: $('#content').val(),
+            email: $('#email').val()
+        };
+        var author = $('#author').val();
+        var form =$('#form')[0];
+        var formData = new FormData(form);
+        formData.append('file', $('#file'));
+        formData.append('key', new Blob([JSON.stringify(data)] , {type: "application/json"}));
+
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/'+author+'/posts',
+            processData: false,
+            contentType:false,
+            data: formData,
+        }).done(function() {
+            alert('글이 등록되었습니다.');
+            window.location.href = '/';
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    }
+</script>
