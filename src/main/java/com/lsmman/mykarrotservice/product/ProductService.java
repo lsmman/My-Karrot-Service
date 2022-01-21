@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class ProductService {
     private final ProductRepository productRepository;
 
-    public void createProduct(Product toProduct) {
-
+    public void saveProduct(Product product) {
+        productRepository.save(product);
     }
 }
