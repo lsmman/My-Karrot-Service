@@ -34,6 +34,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 member.getMemberId(),
                 member.getPassword(),
                 grantedAuthorities,
-                member.getId());
+                member);
     }
 }
