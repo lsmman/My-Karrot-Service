@@ -42,5 +42,7 @@ public class Member {
     public void encodePassword(String password) {
         this.password = password;
     }
-
+    // TODO 나머지 속성 구현
+    // TODO 속성에 validation 추가
+    // TODO enum String -> embedded 타입으로 변경 요망
 }
