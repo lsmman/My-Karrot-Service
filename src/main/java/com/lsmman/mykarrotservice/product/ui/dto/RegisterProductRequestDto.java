@@ -1,8 +1,8 @@
-package com.lsmman.mykarrotservice.product.dto;
+package com.lsmman.mykarrotservice.product.ui.dto;
 
 import com.lsmman.mykarrotservice.member.Member;
-import com.lsmman.mykarrotservice.product.Category;
-import com.lsmman.mykarrotservice.product.Product;
+import com.lsmman.mykarrotservice.product.domain.Category;
+import com.lsmman.mykarrotservice.product.domain.Product;
 import lombok.*;
 
 @AllArgsConstructor

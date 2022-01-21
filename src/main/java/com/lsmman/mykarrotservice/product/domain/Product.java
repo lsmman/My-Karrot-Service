@@ -1,4 +1,4 @@
-package com.lsmman.mykarrotservice.product;
+package com.lsmman.mykarrotservice.product.domain;
 
 import com.lsmman.mykarrotservice.member.Member;
 import lombok.*;

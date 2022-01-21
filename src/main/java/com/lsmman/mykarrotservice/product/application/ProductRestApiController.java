@@ -1,6 +1,6 @@
-package com.lsmman.mykarrotservice.product;
+package com.lsmman.mykarrotservice.product.application;
 
-import com.lsmman.mykarrotservice.product.dto.RegisterProductRequestDto;
+import com.lsmman.mykarrotservice.product.ui.dto.RegisterProductRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PutMapping;

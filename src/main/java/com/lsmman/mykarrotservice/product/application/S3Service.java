@@ -1,4 +1,4 @@
-package com.lsmman.mykarrotservice.product;
+package com.lsmman.mykarrotservice.product.application;
 
 import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

@@ -1,14 +1,14 @@
-package com.lsmman.mykarrotservice.product;
+package com.lsmman.mykarrotservice.product.ui;
 
 import com.lsmman.mykarrotservice.member.CustomUserDetail;
-import com.lsmman.mykarrotservice.product.dto.RegisterProductRequestDto;
+import com.lsmman.mykarrotservice.product.application.ProductRestApiController;
+import com.lsmman.mykarrotservice.product.ui.dto.RegisterProductRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
