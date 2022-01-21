@@ -20,6 +20,7 @@
             <div>
                 <input type="text" th:field="*{memberId}">
             </div>
+            <div th:if="${error}">이미 가입된 아이디입니다.</div>
     </label></div>
     <div>
         <label>
