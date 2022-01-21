@@ -9,13 +9,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/product")
 @RequiredArgsConstructor
 public class ProductController {
     private final ProductRestApiController productRestController;
-    private RestTemplate restTemplate;
+//    private static RestTemplate restTemplate = new RestTemplate();
 
     @GetMapping("/register")
     public String getRegisterProductFoam(RegisterProductRequestDto registerProductRequestDto){
@@ -24,10 +27,14 @@ public class ProductController {
 
     @PostMapping("/register")
     public String registerProduct(RegisterProductRequestDto registerProductRequestDto,
-                                  @AuthenticationPrincipal CustomUserDetail userDetail){
-        registerProductRequestDto.setId(userDetail.getId());
-        restTemplate.put("/product/api", registerProductRequestDto);
-        return "redirect/product/view";
+                                  MultipartFile file,
+                                  @AuthenticationPrincipal CustomUserDetail userDetail
+        ) throws IOException {
+
+        registerProductRequestDto.setMember(userDetail.getMember());
+        productRestController.createProduct(registerProductRequestDto, file);
+        // TODO restController 호출시 resttemplate 적용
+        return "redirect:/view";
     }
 
     @GetMapping("/view")
