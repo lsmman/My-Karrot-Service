@@ -36,5 +36,4 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 .authorities(grantedAuthorities)
                 .build();
     }
-
 }
