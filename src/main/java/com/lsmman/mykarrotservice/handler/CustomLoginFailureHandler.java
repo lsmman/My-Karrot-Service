@@ -13,7 +13,7 @@ import java.io.IOException;
 public class CustomLoginFailureHandler extends SimpleUrlAuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
-//        String msg = "올바르지 않은 아이디나 비밀번호입니다.";
+        //        String msg = "올바르지 않은 아이디나 비밀번호입니다.";
         setDefaultFailureUrl("/login?error=true");
         super.onAuthenticationFailure(request, response, exception);
     }
