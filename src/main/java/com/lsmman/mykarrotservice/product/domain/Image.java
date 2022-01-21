@@ -1,4 +1,4 @@
-package com.lsmman.mykarrotservice.product;
+package com.lsmman.mykarrotservice.product.domain;
 
 import lombok.Getter;
 import lombok.ToString;

@@ -1,20 +1,18 @@
-package com.lsmman.mykarrotservice.product;
+package com.lsmman.mykarrotservice.product.domain;
 
 import com.lsmman.mykarrotservice.member.Member;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @ToString
+@AllArgsConstructor
+@Builder
 public class Product {
     @Id
     @Column(name = "id", nullable = false)
@@ -36,17 +34,19 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private Category category;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "product")
-    @JoinColumn(name = "IMAGE_ID")
-    private List<Image> images = new ArrayList<>();
+//    @OneToMany(fetch = FetchType.LAZY,
+//            cascade = CascadeType.ALL,
+//            mappedBy = "product")
+//    private List<Image> images = new ArrayList<>();
+//    private int imageCount;
 
-    private int imageCount;
+    private String imageUrl;
 
     private String contents;
 
-    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private LocalDateTime createAt;
 
     @Enumerated(EnumType.STRING)
-    private DealStatus dealStatus;
+    private DealStatus dealStatus = DealStatus.SELLING;
 }
