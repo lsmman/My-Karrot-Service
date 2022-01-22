@@ -68,31 +68,3 @@
     </form>
 </body>
 </html>
-
-<script>
-    postsSave : function () {
-        var data = {
-            title: $('#title').val(),
-            content: $('#content').val(),
-            email: $('#email').val()
-        };
-        var author = $('#author').val();
-        var form =$('#form')[0];
-        var formData = new FormData(form);
-        formData.append('file', $('#file'));
-        formData.append('key', new Blob([JSON.stringify(data)] , {type: "application/json"}));
-
-        $.ajax({
-            type: 'POST',
-            url: '/api/v1/'+author+'/posts',
-            processData: false,
-            contentType:false,
-            data: formData,
-        }).done(function() {
-            alert('글이 등록되었습니다.');
-            window.location.href = '/';
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
-        });
-    }
-</script>
