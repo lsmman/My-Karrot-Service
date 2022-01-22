@@ -42,7 +42,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                     .loginPage("/login")
                     .loginProcessingUrl("/doLogin")
-                    .defaultSuccessUrl("/")
+                    .defaultSuccessUrl("/product/view")
                     .usernameParameter("id")
                     .passwordParameter("pw")
                     .failureHandler(customLoginFailureHandler)

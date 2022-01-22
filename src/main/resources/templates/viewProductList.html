@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 뷰</title>
+</head>
+<body>
+<!--  검색  -->
+<div style="position: relative">
+    <div style="display: inline">
+        <h2 style="display: inline">[[${responseDto.userShortAddress}]]</h2>
+    </div>
+    <div style="display: inline; float: right">
+        <a type="button" style="display: inline-block">
+            <img src="/images/검색.png" width="30px" alt="검색">
+        </a>
+
+        <!-- right tab -->
+        <a type="button"  style="display: inline-block">
+            <img src="/images/문서들.png" width="30px" alt="메뉴바">
+        </a>
+    </div>
+</div>
+
+<div th:each="dto : ${responseDto.productDtoList}" style="position: relative; height: 110px">
+    <hr>
+    <div>
+        <div style="display: inline; float: left; padding-right: 40px">
+            <a type="button" onclick="location.href='/product/view/${dto.productId}';">
+                <img th:src="${dto.imgPath}" width="100px" height="100px" alt="제품">
+            </a>
+        </div>
+        <div style="display: inline">
+            <div th:inline="text">[[${dto.title}]]</div>
+            <div th:inline="text">[[${dto.shortAddress}]]</div>
+            <div>
+                <span th:if="${dto.isNotSelling}" style="background-color: gray">
+                        [[${dto.dealStatus}]]</span>
+                <span th:inline="text">[[${dto.price}]] 원</span>
+            </div>
+        </div>
+        <div style="display: inline; float:right; float:bottom;">
+                <span th:if="${dto.commentCount &gt; 0}">
+                    <img src="/images/말풍선.png" width="25px" alt="댓글"> [[${dto.commentCount}]]
+                </span>
+            <span th:if="${dto.likeCount &gt; 0}">
+                    <img src="/images/하트.png" width="25px" alt="좋아요"> [[${dto.likeCount}]]
+                </span>
+        </div>
+    </div>
+</div>
+
+<div style="width: 100%; position: absolute; bottom: 0">
+    <hr />
+    <div style="width: 33%; margin:0 auto; float: left">
+        <div style="display: inline-block; width: 48%; text-align: center;">
+            <div>
+                <a  type="button" onclick="location.href='/product/view';" style="display: inline-block; padding-left: 25px">
+                    <img src="/images/홈.png" width="40px" alt="홈">
+                </a>
+            </div>
+        </div>
+    </div>
+    <!--  나의 당근  -->
+    <div style="width: 33%; margin:0 auto; float: right">
+        <div style="display: inline-block; width: 48%; text-align: center;">
+            <div>
+                <a  type="button" onclick="location.href='/myPage';" style="display: inline-block; padding-left: 25px">
+                    <img src="/images/사람.png" width="40px" alt="나의 당근">
+                </a>
+            </div>
+        </div>
+    </div>
+    <div style="width: 33%; margin:0 auto; float: right">
+        <div style="display: inline-block; width: 48%; text-align: center;">
+            <div>
+                <a  type="button" onclick="location.href='/product/register';" style="display: inline-block; padding-left: 25px">
+                    <img src="/images/플러스.png" width="40px" alt="글 작성">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
