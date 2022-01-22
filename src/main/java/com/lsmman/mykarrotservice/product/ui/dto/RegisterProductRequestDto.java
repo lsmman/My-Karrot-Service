@@ -2,6 +2,7 @@ package com.lsmman.mykarrotservice.product.ui.dto;
 
 import com.lsmman.mykarrotservice.member.Member;
 import com.lsmman.mykarrotservice.product.domain.Category;
+import com.lsmman.mykarrotservice.product.domain.DealStatus;
 import com.lsmman.mykarrotservice.product.domain.Product;
 import lombok.*;
 
@@ -19,13 +20,18 @@ public class RegisterProductRequestDto {
     private String contents;
 
     public static Product toProduct(RegisterProductRequestDto requestDto) {
+        // TODO toProduct에서 기본 값을 정하지 말고 Product 생성자로 객체지향적으로 바꾸기
         return Product.builder()
-                .category(requestDto.getCategory())
-                .member(requestDto.getMember())
                 .title(requestDto.getTitle())
                 .price(requestDto.getPrice())
-                .contents(requestDto.getContents())
+                .commentCount(0)
+                .likeCount(0)
+                .member(requestDto.getMember())
+                .category(requestDto.getCategory())
                 .imageUrl(requestDto.getFilePath())
+                .contents(requestDto.getContents())
+                .dealStatus(DealStatus.SELLING)
+                .shortAddress("삼산1동")
                 .build();
     }
 
