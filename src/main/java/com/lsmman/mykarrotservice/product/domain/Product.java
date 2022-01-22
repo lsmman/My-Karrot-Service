@@ -3,9 +3,11 @@ package com.lsmman.mykarrotservice.product.domain;
 import com.lsmman.mykarrotservice.member.Member;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -19,13 +21,13 @@ public class Product {
     @GeneratedValue
     private Long id;
 
-    private String title;
+    private String title = "";
 
-    private int price;
+    private int price = 0;
 
-    private int commentCount;
+    private int commentCount = 0;
 
-    private int likeCount;
+    private int likeCount = 0;
 
     @OneToOne
     @JoinColumn(name = "MEMBER_ID")
@@ -42,11 +44,21 @@ public class Product {
 
     private String imageUrl;
 
-    private String contents;
-
-    @CreationTimestamp
-    private LocalDateTime createAt;
+    private String contents = "";
 
     @Enumerated(EnumType.STRING)
     private DealStatus dealStatus = DealStatus.SELLING;
+
+    private String shortAddress = "";
+
+    @CreationTimestamp
+    @Column(name = "create_at", updatable = false)
+    private LocalDateTime createAt;
+
+    public String getShortAddress() {
+        if (Objects.isNull(shortAddress) || shortAddress.isEmpty()){
+            shortAddress = member.getShortAddress();
+        }
+        return shortAddress;
+    }
 }
