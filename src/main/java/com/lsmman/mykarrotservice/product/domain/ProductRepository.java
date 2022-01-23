@@ -9,8 +9,8 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(
-            value = "SELECT * FROM product p ORDER BY p.create_at LIMIT 4",
+            value = "SELECT * FROM Product p ORDER BY p.create_at",
             nativeQuery = true
-    )
+    ) // TODO Limit 구현
     List<Product> findAllOrderByDateWithLimit4();
 }
