@@ -47,7 +47,7 @@ public class MemberController {
             model.addAttribute("error", true);
             return "memberJoinForm";
         }
-        memberForm.encodePassword(passwordEncoder.encode(memberForm.getPassword()));
+        memberForm.setPassword(passwordEncoder.encode(memberForm.getPassword()));
         memberRepository.save(memberForm);
         return "redirect:/login";
     }
